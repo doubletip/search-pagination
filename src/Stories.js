@@ -3,7 +3,7 @@ import { useGlobalContext } from './context'
 
 
 const Stories = () => {
-  const {hits, isLoading } = useGlobalContext();
+  const {hits, isLoading , removePost} = useGlobalContext();
 
 
 if(isLoading) {
@@ -13,12 +13,25 @@ if(isLoading) {
 }
   return (
     <>
-      <h2>My Techh News Post</h2>
+    <div className="stories-div">
       {hits.map((curPost)=> {
+        const {title, author, objectID, url, num_comments} = curPost
         return (
-          <h2>{curPost.title}</h2>
+          <>
+            <div className="card" key={objectID}>
+              <h2>{title}</h2>
+              <p>
+                By <span>{author}</span> | <span> {num_comments} comments</span>
+              </p>
+              <div className="card-button">
+                <a href={url} target="_blank">Read More</a>
+                <a href="#" onClick={()=> removePost(objectID)}>Remove</a>
+              </div>
+            </div>
+          </>
         )
       })}
+      </div>
     </>
   )
 }
