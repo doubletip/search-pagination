@@ -41,13 +41,31 @@ const fetchApiData = async (url) => {
   const removePost = (post_ID) => {
     dispatch({type: "REMOVE_POST", payload : post_ID})
   }
+
+  // search
+  const searchPost = (searchQuery) => {
+    dispatch({ type: "SEARCH_QUERY",payload: searchQuery })
+  }
+
+  // pagination 
+  const getNextPage = () => {
+    dispatch({
+      type: 'NEXT_PAGE',
+    })
+  }
+
+  const getPrevPage = () => {
+    dispatch({
+      type: 'PREV_PAGE',
+    })
+  }
   
   useEffect(()=> {
     fetchApiData(`${API}query=${state.query}&page=${state.page}`);
-  },[])
+  },[state.query, state.page])
 
     return (
-        <AppContext.Provider value={{...state, removePost}}>
+        <AppContext.Provider value={{...state, removePost, searchPost , getNextPage, getPrevPage }}>
             {children}
         </AppContext.Provider>
     )

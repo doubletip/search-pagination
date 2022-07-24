@@ -7,7 +7,6 @@ import './App.css'
 const App = () => {
   return (
     <>
-    <div>hihihih</div>
       <Search />
       <Pagination />
       <Stories />

@@ -17,7 +17,6 @@ if(isLoading) {
       {hits.map((curPost)=> {
         const {title, author, objectID, url, num_comments} = curPost
         return (
-          <>
             <div className="card" key={objectID}>
               <h2>{title}</h2>
               <p>
@@ -28,7 +27,6 @@ if(isLoading) {
                 <a href="#" onClick={()=> removePost(objectID)}>Remove</a>
               </div>
             </div>
-          </>
         )
       })}
       </div>
